@@ -30,6 +30,55 @@ router.post('/getNoticeList',function (req,res,next) {
       }
    });
 });
+//根据markid,_id 获取相应的订单信息
+router.post('/getMarkList',function (req,res,next) {
+    var resData = new RestResult();
+    var param = req.body;
+    var markerId = param.markerId;
+    NoticeModel.find({_id:markerId,isPublish:true}).sort({date:-1}).exec(function (err,docs) {
+        if(err){
+            resData.code = 5;
+            resData.errorReason = RestResult.SERVER_EXCEPTION_ERROR_DESCRIPTION;
+            res.send(resData);
+            return;
+        }
+        if(docs.length > 0){
+            resData.code = 0;
+            resData.returnValue = docs;
+            res.send(resData);
+        }
+        else{
+            resData.code = 2;
+            resData.errorReason = "该学校、校区暂无数据";
+            res.send(resData);
+        }
+    });
+});
+//按照userId,获取该用户发布的列表（包括已接单，待接单）
+router.post('/getpulishList',function (req,res,next) {
+    var resData = new RestResult();
+    var param = req.body;
+    var userId = param.userId;
+    console.log(userId)
+    NoticeModel.find({issueuserId:userId}).sort({date:-1}).exec(function (err,docs) {
+        if(err){
+            resData.code = 5;
+            resData.errorReason = RestResult.SERVER_EXCEPTION_ERROR_DESCRIPTION;
+            res.send(resData);
+            return;
+        }
+        if(docs.length > 0){
+            resData.code = 0;
+            resData.returnValue = docs;
+            res.send(resData);
+        }
+        else{
+            resData.code = 2;
+            resData.errorReason = "该用户没有发布记录";
+            res.send(resData);
+        }
+    });
+});
 
 //按照学校school、校区campus，获取所有该学校、校区当前正发布的悬赏列表（只包括待接单）
 router.post('/getRewardNoticeList',function (req,res,next) {
@@ -140,7 +189,7 @@ router.post('/saveRewardNotice',function (req,res,next) {
     var resData = new RestResult();
     var param = req.body;
     NoticeEntity = new NoticeModel({
-        userId: param.staticData.userId,
+        issueuserId: param.staticData.issueuserId,
         issueaddress: param.staticData.issueaddress,
         issuelatitude: param.staticData.issuelatitude,
         issuelongitude: param.staticData.issuelongitude,
@@ -148,6 +197,8 @@ router.post('/saveRewardNotice',function (req,res,next) {
         cartel: param.staticData.cartel,
         carprice: param.staticData.carprice,
         cardec: param.staticData.cardec,
+        issuenickName:param.staticData.issuenickName,
+        issueavatarUrl:param.staticData.issueavatarUrl
     });
     NoticeEntity.save(function (err,doc) {
        if(err){

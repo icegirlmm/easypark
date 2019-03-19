@@ -10,14 +10,17 @@ router.post('/saveOrder',function (req,res,next) {
     var param = req.body;
     var noticeId = param.noticeId;
     var orderEntity = new OrderModel({
-        rewardMoney:param.rewardMoney,//赏金
-        content:param.content,//订单内容
-        orderUserId:param.orderUserId,//订单者信息
+        orderUserId:param.orderUserId,//订购车位订单者信息
         orderAvatarUrl:param.orderAvatarUrl,
         orderNickName:param.orderNickName,
-        receiveUserId:param.receiveUserId,//接单者信息
-        receiveAvatarUrl:param.receiveAvatarUrl,
-        receiveNickName:param.receiveNickName
+        orderphone:param.orderphone,
+        ordercarnum:param.ordercarnum,
+        ordercarbrand:param. ordercarbrand,
+        rewardMoney:param.rewardMoney,//赏金
+        issueUserId:param.issueUserId,
+        issueAvatarUrl:param.issueAvatarUrl,
+        issueNickName:param.issueNickName,
+        parkName:param.parkName
     });
     orderEntity.save(function (err, doc) {
         if (err) {
@@ -34,7 +37,7 @@ router.post('/saveOrder',function (req,res,next) {
                 }
                 else {
                     resData.code = 0;
-                    resData.returnValue = "接单成功！";
+                    resData.returnValue = "预定成功！";
                     res.send(resData);
                 }
             });

@@ -1,10 +1,12 @@
 var mongoose = require("../db/mongodb").mongoose;
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var NoticeSchema = new mongoose.Schema({
-    userId: ObjectId,
+    issueuserId: ObjectId,
     issueaddress: String,
     issuelatitude: Number,
     issuelongitude: Number,
+    issuenickName:String,
+    issueavatarUrl:String,
     carname: String,
     cartel: String,
     carprice: Number,
