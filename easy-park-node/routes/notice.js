@@ -11,7 +11,7 @@ router.post('/getNoticeList',function (req,res,next) {
     // var param = req.body;
     // var school = param.school;
     // var campus = param.campus;
-   NoticeModel.find().sort({date:-1}).exec(function (err,docs) {
+   NoticeModel.find({isPublish:true}).sort({date:-1}).exec(function (err,docs) {
       if(err){
           resData.code = 5;
           resData.errorReason = RestResult.SERVER_EXCEPTION_ERROR_DESCRIPTION;
@@ -139,7 +139,7 @@ router.post('/getRewardList',function (req,res,next) {
     var resData = new RestResult();
     var param = req.body;
     var userId = param.userId;
-    NoticeModel.find({userId:userId,type:0}).sort({date:-1}).exec(function (err,docs) {
+    NoticeModel.find({issueuserId:userId}).sort({date:-1}).exec(function (err,docs) {
         if(err){
             resData.code = 5;
             resData.errorReason = RestResult.SERVER_EXCEPTION_ERROR_DESCRIPTION;
@@ -193,10 +193,10 @@ router.post('/saveRewardNotice',function (req,res,next) {
         issueaddress: param.staticData.issueaddress,
         issuelatitude: param.staticData.issuelatitude,
         issuelongitude: param.staticData.issuelongitude,
-        carname: param.staticData.carname,
-        cartel: param.staticData.cartel,
-        carprice: param.staticData.carprice,
-        cardec: param.staticData.cardec,
+        parkname: param.staticData.parkname,
+        parktel: param.staticData.parktel,
+        parkprice: param.staticData.parkprice,
+        parkdec: param.staticData.parkdec,
         issuenickName:param.staticData.issuenickName,
         issueavatarUrl:param.staticData.issueavatarUrl
     });
@@ -259,7 +259,7 @@ router.post('/deleteRewardNotice',function (req,res,next) {
     });
 });
 
-//param：noticeId,取消发布待命
+//param：noticeId,取消发布
 router.post('/cancelPublish',function (req,res,next) {
     var resData = new RestResult();
     var param = req.body;

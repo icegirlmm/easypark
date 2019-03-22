@@ -1,10 +1,10 @@
 var mongoose = require("../db/mongodb").mongoose;
 
-var UserSchema = new mongoose.Schema({
-    userId:String,
-    password: {type: String,default:null},
+var PasswordSchema = new mongoose.Schema({
+    userId: String,
+    password: {type: Number, default: null},
 });
 
-var UserModel = mongoose.model('Password', UserSchema);
+var PasswordModel = mongoose.model('Password', PasswordSchema);
 
-exports.UserModel = UserModel;
+exports.PasswordModel = PasswordModel;

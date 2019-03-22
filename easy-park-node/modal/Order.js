@@ -19,7 +19,8 @@ var OrderSchema = new mongoose.Schema({
     issueConfirm:{type:Boolean,default:false},//接单者确认完成订单
     status:{type:Number,default:0},//订单状态,4:待接单,5:未接单状态时,订单者取消订单,6:接单者拒绝接单,0:服务中,1:接单状态时,订单者取消订单,2:接单状态时,接单者取消订单,3:完成接单
     noticeId:{type:ObjectId,default:null},
-    parkName:String
+    parkName:String,
+    issuetel:String
 });
 
 var OrderModel = mongoose.model('Order', OrderSchema);

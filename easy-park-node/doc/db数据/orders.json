@@ -14,7 +14,9 @@
 	"receiveNickName" : "wld",
 	"receiveUserId" : ObjectId("5c3ecf59a1818520c4085275"),
 	"rewardMoney" : 88,
-	"status" : 0
+	"status" : 0,
+	"parkName":"dsada",
+	"issuetel":"213213213"
 },
 {
 	"__v" : 0,

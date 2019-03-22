@@ -7,10 +7,10 @@ var NoticeSchema = new mongoose.Schema({
     issuelongitude: Number,
     issuenickName:String,
     issueavatarUrl:String,
-    carname: String,
-    cartel: String,
-    carprice: Number,
-    cardec:String,
+    parkname: String,
+    parktel: String,
+    parkprice: Number,
+    parkdec:String,
     date: { type: Date, default: Date.now},
     isPublish: { type: Boolean, default: true},//发布状态 true为发布中
     status: {type: Number,default: 0} //type为0时:0表示未接单，1表示接单;type为1时:表示收到几人预定

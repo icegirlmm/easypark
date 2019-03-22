@@ -63,6 +63,7 @@ router.post('/login', function (req, res, next) {
                     resData = {
                         userId: doc._id,
                         session: doc.session_key,
+                        totalmoney:doc.totalmoney,
                         userInfo:{
                             nickName:doc.nickName,
                             avatarUrl:doc.avatarUrl,
@@ -87,6 +88,7 @@ router.post('/login', function (req, res, next) {
                             resData = {
                                 userId: doc._id,
                                 session: session_key,
+                                totalmoney:doc.totalmoney,
                                 userInfo:{
                                     nickName:doc.nickName,
                                     avatarUrl:doc.avatarUrl,

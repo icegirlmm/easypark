@@ -126,13 +126,13 @@ router.post('/getMsgList',function (req,res,next) {
         if(err){
             resData.code = 5;
             resData.errorReason = RestResult.SERVER_EXCEPTION_ERROR_DESCRIPTION;
-            res.send(resData);
         }
         else{
             var toUser=[];
             for(var i=0;i<result.one.length;i++){
                 toUser.push(result.one[i]);
             }
+            console.log(result)
             for(var j=0;j<result.two.length;j++){
                 var f=1;
                 for(var k=0;k<result.one.length;k++){

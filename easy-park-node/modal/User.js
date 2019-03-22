@@ -12,7 +12,8 @@ var UserSchema = new mongoose.Schema({
     language:{type: String,default:null},
     date: { type: Date, default: Date.now },
     telphone:{type: String,default:null},
-    plate:{type: String,default:null}
+    plate:{type: String,default:null},
+    totalmoney:{type: Number,default:50},
 });
 
 var UserModel = mongoose.model('User', UserSchema);
